@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_item: one
+  text: MyString
+  selection_type: MyString
+
+two:
+  menu_item: two
+  text: MyString
+  selection_type: MyString
