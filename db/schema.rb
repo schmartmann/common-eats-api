@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_05_16_194350) do
 
   create_table "menus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "service_start_hour", default: "09:00"
+    t.string "service_end_hour", default: "23:59"
     t.uuid "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
