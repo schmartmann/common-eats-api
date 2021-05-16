@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_194350) do
+ActiveRecord::Schema.define(version: 2021_05_16_230115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 2021_05_16_194350) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_courses_on_menu_id"
+  end
+
+  create_table "menu_item_refinements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "menu_item_id", null: false
+    t.string "text", null: false
+    t.string "selection_type", default: "radio", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_item_id"], name: "index_menu_item_refinements_on_menu_item_id"
+  end
+
+  create_table "menu_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "course_id", null: false
+    t.string "name", null: false
+    t.string "description", null: false
+    t.float "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_menu_items_on_course_id"
   end
 
   create_table "menus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -47,5 +66,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_194350) do
   end
 
   add_foreign_key "courses", "menus"
+  add_foreign_key "menu_item_refinements", "menu_items"
+  add_foreign_key "menu_items", "courses"
   add_foreign_key "menus", "restaurants"
 end
