@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_192904) do
+ActiveRecord::Schema.define(version: 2021_05_16_194350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_courses_on_menu_id"
+  end
+
   create_table "menus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "restaurant_id", null: false
+    t.uuid "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
@@ -36,4 +44,6 @@ ActiveRecord::Schema.define(version: 2021_05_16_192904) do
     t.index ["phone"], name: "index_restaurants_on_phone", unique: true
   end
 
+  add_foreign_key "courses", "menus"
+  add_foreign_key "menus", "restaurants"
 end
