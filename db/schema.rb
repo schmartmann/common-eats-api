@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_010719) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
-  create_table "operation_hours", force: :cascade do |t|
+  create_table "operation_hours", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "schedulable_type"
     t.uuid "schedulable_id"
     t.string "day"

@@ -1,6 +1,6 @@
 class CreateOperationHours < ActiveRecord::Migration[6.1]
   def change
-    create_table :operation_hours do |t|
+    create_table :operation_hours, id: :uuid  do |t|
       t.references :schedulable, polymorphic: true, type: :uuid
       t.string :day
       t.time :opens
