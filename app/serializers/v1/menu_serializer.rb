@@ -3,5 +3,6 @@ module V1
         attributes :id, :name
 
         has_many :courses
+        has_many :operation_hours, as: :schedulable
     end
 end

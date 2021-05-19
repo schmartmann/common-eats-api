@@ -1,5 +1,6 @@
 class Restaurant < ApplicationRecord
     has_many :menus
+    has_many :operation_hours, as: :schedulable
 
     validates :name, presence: true
     validates :phone, presence: true

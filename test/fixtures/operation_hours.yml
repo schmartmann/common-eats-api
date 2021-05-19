@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant: one
+  day: MyString
+  opens: 2021-05-18 21:07:19
+  closes: 2021-05-18 21:07:19
+  valid_from: 2021-05-18 21:07:19
+  valid_through: 2021-05-18 21:07:19
+
+two:
+  restaurant: two
+  day: MyString
+  opens: 2021-05-18 21:07:19
+  closes: 2021-05-18 21:07:19
+  valid_from: 2021-05-18 21:07:19
+  valid_through: 2021-05-18 21:07:19

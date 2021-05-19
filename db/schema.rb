@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_230115) do
+ActiveRecord::Schema.define(version: 2021_05_19_010719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 2021_05_16_230115) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
+  end
+
+  create_table "operation_hours", force: :cascade do |t|
+    t.string "schedulable_type"
+    t.uuid "schedulable_id"
+    t.string "day"
+    t.time "opens"
+    t.time "closes"
+    t.datetime "valid_from"
+    t.datetime "valid_through"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedulable_type", "schedulable_id"], name: "index_operation_hours_on_schedulable"
   end
 
   create_table "restaurants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
