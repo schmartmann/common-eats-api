@@ -3,5 +3,8 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:index, :show] do
       resources :menus, only: [:index, :show]
     end
+
+    get '/operation-hours/restaurants/:restaurant_id', to: 'operation_hours#retrieve_restaurant_operation_hours', as: :retrieve_restaurant_operation_hours
+    get '/operation-hours/menus/:menu_id', to: 'operation_hours#retrieve_menu_operation_hours', as: :retrieve_menu_operation_hours
   end
 end
