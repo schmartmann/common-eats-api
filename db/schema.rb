@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_200641) do
+ActiveRecord::Schema.define(version: 2021_05_22_175625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_200641) do
     t.string "schedulable_type"
     t.uuid "schedulable_id"
     t.string "day"
-    t.time "opens"
-    t.time "closes"
+    t.string "start_time"
+    t.string "end_time"
     t.datetime "valid_from"
     t.datetime "valid_through"
     t.datetime "created_at", precision: 6, null: false
