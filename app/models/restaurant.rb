@@ -9,4 +9,5 @@ class Restaurant < ApplicationRecord
     validates :city, presence: true
     validates :state, presence: true
     validates :postal_code, presence: true
+    validates :time_zone, presence: true, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.name } }
 end
