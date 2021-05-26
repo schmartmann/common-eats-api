@@ -1,9 +1,8 @@
 module V1
     class RestaurantsController < ApplicationController
-
         def index
-            @restaurants = Restaurant.all 
-
+            # @restaurants = Restaurant.is_open.all
+            
             render json: @restaurants, each_serializer: V1::RestaurantSerializer 
         end
 
