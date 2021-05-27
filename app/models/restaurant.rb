@@ -22,6 +22,8 @@
 #
 class Restaurant < ApplicationRecord
     has_many :menus
+    has_many :restaurant_cuisines
+    has_many :cuisines, through: :restaurant_cuisines
     has_many :operation_hours, as: :schedulable
 
     validates :name, presence: true

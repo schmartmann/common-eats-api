@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_010719) do
+ActiveRecord::Schema.define(version: 2021_05_27_192052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 2021_05_19_010719) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_courses_on_menu_id"
+  end
+
+  create_table "cuisines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "menu_item_refinements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -66,6 +72,15 @@ ActiveRecord::Schema.define(version: 2021_05_19_010719) do
     t.index ["schedulable_type", "schedulable_id"], name: "index_operation_hours_on_schedulable"
   end
 
+  create_table "restaurant_cuisines", force: :cascade do |t|
+    t.uuid "cuisine_id", null: false
+    t.uuid "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cuisine_id"], name: "index_restaurant_cuisines_on_cuisine_id"
+    t.index ["restaurant_id"], name: "index_restaurant_cuisines_on_restaurant_id"
+  end
+
   create_table "restaurants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "phone", null: false
@@ -86,4 +101,6 @@ ActiveRecord::Schema.define(version: 2021_05_19_010719) do
   add_foreign_key "menu_item_refinements", "menu_items"
   add_foreign_key "menu_items", "courses"
   add_foreign_key "menus", "restaurants"
+  add_foreign_key "restaurant_cuisines", "cuisines"
+  add_foreign_key "restaurant_cuisines", "restaurants"
 end
