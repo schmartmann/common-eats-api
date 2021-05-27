@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 2021_05_19_010719) do
   create_table "operation_hours", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "schedulable_type"
     t.uuid "schedulable_id"
-    t.integer "day"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.integer "day", null: false
+    t.float "start_time", default: 0.0, null: false
+    t.float "end_time", default: 23.75, null: false
     t.datetime "valid_from"
     t.datetime "valid_through"
     t.string "time_zone", default: "UTC", null: false

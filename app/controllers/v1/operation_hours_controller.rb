@@ -3,7 +3,9 @@ module V1
 
         def retrieve_open_restaurants_by_time_zone
             current_time = Time.current.in_time_zone(params[:tz])
-            @operation_hours = OperationHour.restaurants.today(current_time).started_since(current_time).ends_after(current_time)
+            @operation_hours = OperationHour.open_restaurants(current_time)
+
+            render json: @operation_hours, each_serializer: V1::OperationHourSerializer
         end
         
         def retrieve_restaurant_operation_hours

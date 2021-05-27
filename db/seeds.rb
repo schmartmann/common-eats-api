@@ -29,6 +29,7 @@ course = Course.create({
 schedule = OperationHour.create({
     schedulable: restaurant,
     time_zone: restaurant.time_zone,
-    starts_at: Time.parse("10:00 AM").in_time_zone(restaurant.time_zone),
-    ends_at: Time.parse("5:00 PM").in_time_zone(restaurant.time_zone)
+    day: 4,
+    start_time: 9.5,
+    end_time: 17.5
 })
