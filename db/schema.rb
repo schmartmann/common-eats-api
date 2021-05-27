@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_230115) do
+ActiveRecord::Schema.define(version: 2021_05_19_010719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,20 @@ ActiveRecord::Schema.define(version: 2021_05_16_230115) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
+  create_table "operation_hours", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "schedulable_type"
+    t.uuid "schedulable_id"
+    t.integer "day", null: false
+    t.float "start_time", default: 0.0, null: false
+    t.float "end_time", default: 23.75, null: false
+    t.datetime "valid_from"
+    t.datetime "valid_through"
+    t.string "time_zone", default: "UTC", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedulable_type", "schedulable_id"], name: "index_operation_hours_on_schedulable"
+  end
+
   create_table "restaurants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "phone", null: false
@@ -60,6 +74,9 @@ ActiveRecord::Schema.define(version: 2021_05_16_230115) do
     t.string "city", null: false
     t.string "state", null: false
     t.string "postal_code", null: false
+    t.string "time_zone", default: "UTC", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["name"], name: "index_restaurants_on_name", unique: true
     t.index ["phone"], name: "index_restaurants_on_phone", unique: true
