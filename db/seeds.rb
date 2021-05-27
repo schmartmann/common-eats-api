@@ -12,7 +12,8 @@ restaurant = Restaurant.create({
     street_address: "100 Crosby Street",
     city: "New York", 
     state: "NY",
-    postal_code: "10010"
+    postal_code: "10010",
+    time_zone: "Eastern Time (US & Canada)"
 })
 
 menu = Menu.create({
@@ -23,4 +24,11 @@ menu = Menu.create({
 course = Course.create({
     menu: menu,
     name: "Drinks"
+})
+
+schedule = OperationHour.create({
+    schedulable: restaurant,
+    time_zone: restaurant.time_zone,
+    starts_at: Time.parse("10:00 AM").in_time_zone(restaurant.time_zone),
+    ends_at: Time.parse("5:00 PM").in_time_zone(restaurant.time_zone)
 })

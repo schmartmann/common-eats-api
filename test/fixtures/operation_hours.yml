@@ -3,10 +3,11 @@
 # Table name: operation_hours
 #
 #  id               :uuid             not null, primary key
-#  day              :string
-#  end_time         :string
+#  day              :integer
+#  end_time         :datetime
 #  schedulable_type :string
-#  start_time       :string
+#  start_time       :datetime
+#  time_zone        :string           default("UTC"), not null
 #  valid_from       :datetime
 #  valid_through    :datetime
 #  created_at       :datetime         not null

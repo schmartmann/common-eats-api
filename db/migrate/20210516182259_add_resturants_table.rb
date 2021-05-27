@@ -8,6 +8,9 @@ class AddResturantsTable < ActiveRecord::Migration[6.1]
       t.string :city,           null: false
       t.string :state,          null: false
       t.string :postal_code,    null: false
+      t.string :time_zone,      null: false, default: 'UTC'
+
+      t.timestamps
     end
 
     add_index :restaurants, :email, unique: true
