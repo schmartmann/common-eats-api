@@ -28,9 +28,12 @@ class OperationHour < ApplicationRecord
 
   before_save :assign_parent_time_zone
 
-  scope :restaurants, -> { where(schedulable_type: 'Restaurant') }
-  scope :today, lambda { |current_time| where('day = ?', current_time.wday) }
-
+  scope :open_restaurants, ->  (current_time) {
+    where(schedulable_type: 'Restaurant')
+      .where('day = ?', current_time.wday)
+      .where('start_time <= ?', current_time)
+      .where('end_time >= ?', current_time)
+  }
 
   def start_time_is_before_end_time?
     errors.add(:end_time, 'must be later than start time') if start_time.in_time_zone(time_zone) >= end_time.in_time_zone(time_zone)    
