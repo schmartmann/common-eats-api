@@ -21,6 +21,8 @@
 #  index_restaurants_on_phone  (phone) UNIQUE
 #
 class Restaurant < ApplicationRecord
+    belongs_to :restauranteur
+
     has_many :menus
     has_many :restaurant_cuisines
     has_many :cuisines, through: :restaurant_cuisines
