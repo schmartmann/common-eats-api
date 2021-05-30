@@ -2,17 +2,18 @@
 #
 # Table name: restaurants
 #
-#  id             :uuid             not null, primary key
-#  city           :string           not null
-#  email          :string           not null
-#  name           :string           not null
-#  phone          :string           not null
-#  postal_code    :string           not null
-#  state          :string           not null
-#  street_address :string           not null
-#  time_zone      :string           default("UTC"), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id               :uuid             not null, primary key
+#  city             :string           not null
+#  email            :string           not null
+#  name             :string           not null
+#  phone            :string           not null
+#  postal_code      :string           not null
+#  state            :string           not null
+#  street_address   :string           not null
+#  time_zone        :string           default("UTC"), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  restauranteur_id :string
 #
 # Indexes
 #
