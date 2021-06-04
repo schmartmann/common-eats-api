@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: sessions
+#
+#  id         :uuid             not null, primary key
+#  expires_at :datetime
+#  user_agent :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  device_id  :string
+#  user_id    :uuid
+#
+
+one:
+  id: 
+  expires_at: 2021-06-04 13:28:00
+  user_agent: MyString
+  user_id: 
+  device_id: MyString
+
+two:
+  id: 
+  expires_at: 2021-06-04 13:28:00
+  user_agent: MyString
+  user_id: 
+  device_id: MyString

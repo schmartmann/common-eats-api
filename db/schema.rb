@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_021447) do
+ActiveRecord::Schema.define(version: 2021_06_04_172800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2021_05_29_021447) do
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["name"], name: "index_restaurants_on_name", unique: true
     t.index ["phone"], name: "index_restaurants_on_phone", unique: true
+  end
+
+  create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "expires_at"
+    t.string "user_agent"
+    t.uuid "user_id"
+    t.string "device_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
