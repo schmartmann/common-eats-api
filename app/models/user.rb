@@ -23,6 +23,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    has_many :sessions, dependent: :destroy, inverse_of: :user
+
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :phone, presence: true

@@ -13,7 +13,7 @@
 class Session < ApplicationRecord
     belongs_to :user, inverse_of: :sessions
 
-    JWT_ISSUER = 'Drivers Co-op API'
+    JWT_ISSUER = 'G.Eats API'
     JWT_ALGORITHM = 'HS256'
     JWT_HMAC_SECRET = Rails.application.secret_key_base
   
