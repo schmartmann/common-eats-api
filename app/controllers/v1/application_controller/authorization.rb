@@ -21,6 +21,16 @@ module V1
                     end
                 end
             end
+
+            private
+
+            def pundit_user
+                Current.user
+            end
+      
+            def pundit_params_for(_record)
+                params
+            end      
         end
     end
 end

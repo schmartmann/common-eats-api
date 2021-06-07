@@ -21,6 +21,10 @@ module V1
             def authentication_strategy
                 ::Authentication::TokenStrategy.new(request)
             end
+
+            def current_user
+                Current.user
+            end        
         end
     end
 end
