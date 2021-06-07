@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :v1 do
     resources :users
+    resources :sessions, only: [:index, :create, :show, :destroy]
 
     resources :restaurants, only: [:index, :show] do
       resources :menus, only: [:index, :show]
