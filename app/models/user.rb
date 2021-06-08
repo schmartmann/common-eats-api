@@ -21,6 +21,12 @@ class User < ApplicationRecord
 
     ROLES = %i[customer restauranteur admin].freeze
 
+    ROLES.each do |role|
+        scope role.to_s.pluralize.to_sym, -> { where(role => true) }
+    end
+
+    scope :with_role, ->(role) { where(role => true) if role.to_sym.in?(ROLES) }
+    
     has_secure_password
 
     has_many :sessions, dependent: :destroy, inverse_of: :user
@@ -29,4 +35,18 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :phone, presence: true
     validates :email, presence: true
+
+
+    def role?(role)
+        role.to_sym.in?(ROLES) && send(:"#{role}?")
+    end
+
+    def roles
+        ROLES.select { |role| send(role) }
+    end
+
+    def roles=(roles)
+        roles = roles.map(&:to_sym)
+        ROLES.each { |role| send(:"#{role}=", role.in?(roles)) }
+    end
 end

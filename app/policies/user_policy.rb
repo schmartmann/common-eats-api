@@ -1,6 +1,10 @@
 class UserPolicy < ApplicationPolicy
     allow_anonymous_users!
   
+    def index?
+      user&.admin? || record == user
+    end
+
     def create?
       user.nil? || user.admin?
     end

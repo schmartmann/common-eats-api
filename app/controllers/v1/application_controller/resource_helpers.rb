@@ -5,7 +5,6 @@ module V1
 
             private
 
-
             def find_resources
                 self.resource = policy_scope(resource_class)
             end

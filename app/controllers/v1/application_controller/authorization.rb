@@ -16,7 +16,7 @@ module V1
                 def accessible_only_to(*roles)
                     options = roles.extract_options!
 
-                    before_action(options) do 
+                    before_action(options) do
                         head :forbidden unless roles.any? { |role| Current.user.role?(role) }
                     end
                 end

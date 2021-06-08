@@ -1,5 +1,10 @@
 module V1
     class UsersController < ApplicationController
+        accessible_only_to :admin, except: :create
+        skip_before_action :authenticate!, only: :create
+        before_action :authenticate, only: :create
+
+        before_action :find_resources, only: :index  
         before_action :build_resource, only: :create
 
         def index
@@ -11,9 +16,9 @@ module V1
         def create
             if @user.save
                 render json: @user, serializer: V1::UserSerializer, status: :created
-              else
+            else
                 render json: @user.errors, status: :unprocessable_entity
-              end        
+            end        
         end
     end
 end
