@@ -1,4 +1,12 @@
 class RestaurantPolicy < ApplicationPolicy
+    def index?
+        true
+    end
+
+    def show?
+        index?
+    end
+    
     def create?
         user.admin? || user.restauranteur?
     end

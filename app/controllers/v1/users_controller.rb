@@ -4,13 +4,16 @@ module V1
         skip_before_action :authenticate!, only: :create
         before_action :authenticate, only: :create
 
-        before_action :find_resources, only: :index  
+        before_action :find_resources, only: :index
+        before_action :find_resource,  only: :show
         before_action :build_resource, only: :create
 
         def index
-          @users = User.all
+            render json: @users, each_serializer: V1::UserSerializer
+        end
 
-          render json: @users, each_serializer: V1::UserSerializer
+        def show 
+            render json: @user, serializer: V1::UserSerializer
         end
 
         def create
