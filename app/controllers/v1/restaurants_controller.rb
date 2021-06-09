@@ -1,12 +1,13 @@
 module V1
     class RestaurantsController < ApplicationController
+        before_action :find_resources, only: :index
+        before_action :find_resource, only: :show
+
         def index
-            @restaurants = Restaurant.all
             render json: @restaurants, each_serializer: V1::RestaurantSerializer 
         end
 
         def show
-            @restaurant = Restaurant.find(params[:id])
             render json: @restaurant, serializer: V1::RestaurantSerializer
         end
     end

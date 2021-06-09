@@ -1,0 +1,34 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :uuid             not null, primary key
+#  admin           :boolean          default(FALSE), not null
+#  customer        :boolean          default(FALSE), not null
+#  email           :string           not null
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  password_digest :string
+#  phone           :string           not null
+#  restauranteur   :boolean          default(FALSE), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  admin: false
+  customer: false
+  restauranteur: false
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  phone: MyString
+
+two:
+  admin: false
+  customer: false
+  restauranteur: false
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  phone: MyString
