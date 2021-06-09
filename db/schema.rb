@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_212049) do
+ActiveRecord::Schema.define(version: 2021_06_09_212910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "course_item_refinements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "menu_item_id", null: false
+    t.uuid "course_item_id", null: false
     t.string "text", null: false
     t.string "selection_type", default: "radio", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["menu_item_id"], name: "index_course_item_refinements_on_menu_item_id"
+    t.index ["course_item_id"], name: "index_course_item_refinements_on_course_item_id"
   end
 
   create_table "course_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_212049) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "course_item_refinements", "course_items", column: "menu_item_id"
+  add_foreign_key "course_item_refinements", "course_items"
   add_foreign_key "course_items", "courses"
   add_foreign_key "courses", "menus"
   add_foreign_key "menus", "restaurants"
