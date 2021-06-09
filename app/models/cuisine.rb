@@ -12,5 +12,5 @@ class Cuisine < ApplicationRecord
 
     has_many :restaurants, through: :restaurant_cuisines
 
-    validates :name, presence: true, 
+    validates :name, presence: true, uniqueness: true
 end
