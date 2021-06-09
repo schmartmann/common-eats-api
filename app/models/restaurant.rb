@@ -22,7 +22,7 @@
 #  index_restaurants_on_phone  (phone) UNIQUE
 #
 class Restaurant < ApplicationRecord
-    belongs_to :restauranteur
+    belongs_to :restauranteur, class_name: 'User', inverse_of: :restaurants
 
     has_many :menus
     has_many :restaurant_cuisines
@@ -37,4 +37,9 @@ class Restaurant < ApplicationRecord
     validates :state, presence: true
     validates :postal_code, presence: true
     validates :time_zone, presence: true, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.name } }
+    validate  :valid_restauranteur
+
+    def valid_restauranteur
+        errors.add(:restauranteur_id, 'must be Restauranteur') unless User.find(restauranteur_id).restauranteur
+    end
 end

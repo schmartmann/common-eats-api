@@ -31,4 +31,8 @@ class MenuPolicy < ApplicationPolicy
             :restaurant_id
         ]
     end
+
+    def permitted_attributes_for_update
+        permitted_attributes_for_create
+    end
 end

@@ -27,6 +27,11 @@ module V1
                 render json: @menu.errors, status: :unprocessable_entity
             end
         end
+
+        def destroy
+            @menu.destroy!
+            head :no_content
+        end
       
         private 
 
