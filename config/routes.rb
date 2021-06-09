@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     resources :users
     resources :sessions, only: [:index, :create, :show, :destroy]
 
-    resources :restaurants, only: [:index, :show] do
-      resources :menus, only: [:index, :show]
+    resources :restaurants do
+      resources :menus
     end
 
     get '/operation-hours/restaurants', to: 'operation_hours#retrieve_open_restaurants_by_time_zone', as: :retrieve_open_restaurants_by_time_zone
