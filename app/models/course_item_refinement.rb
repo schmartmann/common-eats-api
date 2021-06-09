@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: menu_item_refinements
+# Table name: course_item_refinements
 #
 #  id             :uuid             not null, primary key
 #  selection_type :string           default("radio"), not null
@@ -11,14 +11,14 @@
 #
 # Indexes
 #
-#  index_menu_item_refinements_on_menu_item_id  (menu_item_id)
+#  index_course_item_refinements_on_menu_item_id  (menu_item_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (menu_item_id => menu_items.id)
+#  fk_rails_...  (menu_item_id => course_items.id)
 #
-class MenuItemRefinement < ApplicationRecord
-  belongs_to :menu_item
+class CourseItemRefinement < ApplicationRecord
+  belongs_to :course_item
 
   SELECTION_TYPE = %w[check radio].freeze
 
