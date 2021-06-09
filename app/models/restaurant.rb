@@ -24,10 +24,10 @@
 class Restaurant < ApplicationRecord
     belongs_to :restauranteur, class_name: 'User', inverse_of: :restaurants
 
-    has_many :menus
-    has_many :restaurant_cuisines
+    has_many :menus, dependent: :destroy
+    has_many :restaurant_cuisines, dependent: :destroy
     has_many :cuisines, through: :restaurant_cuisines
-    has_many :operation_hours, as: :schedulable
+    has_many :operation_hours, as: :schedulable, dependent: :destroy
 
     validates :name, presence: true
     validates :phone, presence: true
