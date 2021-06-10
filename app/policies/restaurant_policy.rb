@@ -8,7 +8,7 @@ class RestaurantPolicy < ApplicationPolicy
     end
     
     def create?
-        user.admin? || user.restauranteur?
+        user.admin?
     end
 
     def update?
@@ -20,7 +20,7 @@ class RestaurantPolicy < ApplicationPolicy
     end
 
     def destroy?
-        update?
+        create?
     end
 
     def permitted_attributes_for_create
