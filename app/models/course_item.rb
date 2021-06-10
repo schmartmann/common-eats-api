@@ -23,7 +23,8 @@ class CourseItem < ApplicationRecord
 
   has_many :course_item_refinements
 
-  validates :name,        presence: true
+  validates :name,        presence: true, uniqueness: { scope: :course_id }
   validates :price,       presence: true
   validates :description, presence: true
+
 end

@@ -3,9 +3,11 @@ Rails.application.routes.draw do
     resources :users
     resources :cuisines
     resources :sessions, only: [:index, :create, :show, :destroy]
-    resources :restaurants do
-      resources :menus
-    end
+    resources :restaurants
+    resources :menus
+    resources :courses
+    resources :course_items
+    resources :course_item_refinements
 
     get '/operation-hours/restaurants', to: 'operation_hours#retrieve_open_restaurants_by_time_zone', as: :retrieve_open_restaurants_by_time_zone
     get '/operation-hours/restaurants/:restaurant_id', to: 'operation_hours#retrieve_restaurant_operation_hours', as: :retrieve_restaurant_operation_hours
