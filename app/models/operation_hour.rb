@@ -25,8 +25,9 @@ class OperationHour < ApplicationRecord
 
   validates :day, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
   validates :time_zone, presence: true, inclusion: { in: ActiveSupport::TimeZone.all.map { |tz| tz.name } }
-  validates :start_time, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 23.75 },  uniqueness: { scope: :schedulable_id }
-  validates :end_time, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 23.75 },  uniqueness: { scope: :schedulable_id }
+  validate  :start_time
+  validates :start_time, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 23.75 },  uniqueness: { scope: [ :schedulable_id, :day ] }
+  validates :end_time, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 23.75 },  uniqueness: { scope: [ :schedulable_id, :day ] }
   validate  :start_time_is_before_end_time?
 
   before_save :assign_parent_time_zone
@@ -43,6 +44,10 @@ class OperationHour < ApplicationRecord
   end
 
   def assign_parent_time_zone
-    self.time_zone = schedulable.time_zone
+    if schedulable_type == 'Restaurant'
+      self.time_zone = schedulable.time_zone
+    else
+      self.time_zone = schedulable.restaurant.time_zone
+    end
   end
 end
