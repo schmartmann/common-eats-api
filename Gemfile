@@ -18,6 +18,7 @@ group :development, :test do
   gem 'pundit-matchers'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'json_schemer'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-performance', require: false
