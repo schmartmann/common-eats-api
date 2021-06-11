@@ -11,6 +11,19 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+
+# This is a helper to use one-line expectations where block contexts are
+# required. Use it the same way you would `is_expected`. For example:
+#
+#   it { will_be_expected.to raise_error(...) }
+#
+# See https://github.com/rspec/rspec-expectations/issues/805.
+module WillBeExpected
+  def will_be_expected
+    expect { subject }
+  end
+end
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
