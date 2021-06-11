@@ -13,7 +13,7 @@
 #  time_zone        :string           default("UTC"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  restauranteur_id :string
+#  restauranteur_id :string           not null
 #
 # Indexes
 #
