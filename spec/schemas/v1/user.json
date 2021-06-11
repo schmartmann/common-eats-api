@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.common-eats.com/schemas/v1/user.json",
+    "type": "object",
+    "required": ["id", "email", "first_name", "last_name", "roles"],
+    "properties": {
+      "id": {"type": "string", "format": "uuid"},
+      "email": {"type": "string", "format": "email"},
+      "first_name": {"type": "string"},
+      "last_name": {"type": "string"},
+      "phone": {"type": "string"},
+      "roles": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": {"enum": ["admin", "customer", "restauranteur"]}
+        }
+      },
+      "created_at": {"type": "string", "format": "date-time"},
+      "updated_at": {"type": "string", "format": "date-time"}
+    }
+  }
+  
