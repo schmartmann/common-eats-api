@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_212910) do
+ActiveRecord::Schema.define(version: 2021_06_11_183022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,15 +43,13 @@ ActiveRecord::Schema.define(version: 2021_06_09_212910) do
   end
 
   create_table "cuisines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "menus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "service_start_hour", default: "09:00"
-    t.string "service_end_hour", default: "23:59"
     t.uuid "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_212910) do
     t.string "time_zone", default: "UTC", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "restauranteur_id"
+    t.string "restauranteur_id", null: false
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["name"], name: "index_restaurants_on_name", unique: true
     t.index ["phone"], name: "index_restaurants_on_phone", unique: true

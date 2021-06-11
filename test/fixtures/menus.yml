@@ -2,13 +2,11 @@
 #
 # Table name: menus
 #
-#  id                 :uuid             not null, primary key
-#  name               :string           not null
-#  service_end_hour   :string           default("23:59")
-#  service_start_hour :string           default("09:00")
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  restaurant_id      :uuid             not null
+#  id            :uuid             not null, primary key
+#  name          :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  restaurant_id :uuid             not null
 #
 # Indexes
 #
