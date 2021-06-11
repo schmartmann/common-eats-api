@@ -36,7 +36,6 @@ class User < ApplicationRecord
     validates :phone, presence: true
     validates :email, presence: true
 
-
     def role?(role)
         role.to_sym.in?(ROLES) && send(:"#{role}?")
     end

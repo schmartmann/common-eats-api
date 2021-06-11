@@ -1,4 +1,4 @@
-class RestaurantPolicy < ApplicationPolicy
+class CuisinePolicy < ApplicationPolicy
     def index?
         true
     end
@@ -6,17 +6,17 @@ class RestaurantPolicy < ApplicationPolicy
     def show?
         index?
     end
-    
+
     def create?
         user.admin?
     end
 
     def update?
-        record.restauranteur == user
+        create?
     end
 
     def edit?
-        update?
+        create?
     end
 
     def destroy?
@@ -25,13 +25,11 @@ class RestaurantPolicy < ApplicationPolicy
 
     def permitted_attributes_for_create
         [
-            :name,
-            :phone,
-            :street_address,
-            :city,
-            :state,
-            :postal_code,
-            :time_zone
+            :name
         ]
+    end
+
+    def permitted_attributes_for_update
+        permitted_attributes_for_create
     end
 end

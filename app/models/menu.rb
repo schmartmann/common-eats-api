@@ -20,8 +20,8 @@
 #
 class Menu < ApplicationRecord
     belongs_to :restaurant
-    has_many :courses
-    has_many :operation_hours, as: :schedulable
+    has_many :courses, dependent: :destroy
+    has_many :operation_hours, as: :schedulable, dependent: :destroy
 
     validates :name, presence: true, uniqueness: { scope: :restaurant_id }
 end
